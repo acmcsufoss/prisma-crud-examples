@@ -29,13 +29,13 @@ export const actions = {
     });
     throw redirect(303, "/");
   },
-  delete: async ({request }) => {
+  delete: async ({ request }) => {
     const data = await request.formData();
     const id = Number(data.get("id"));
     await db.posts.delete({
-        where: {
-            id: id
-        }
+      where: {
+        id: id
+      }
     })
-  }
+  },
 };
