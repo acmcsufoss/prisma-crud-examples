@@ -1,9 +1,18 @@
+import type { GetServerSideProps} from 'next';
+import { InferGetServerSidePropsType } from 'next'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import { prisma } from '@/server/db'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export const getServerSideProps = async () => {
+  const posts = await prisma.post.findMany();
+  return { props: { posts }}
+}
+
+export default function Home({ posts }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
