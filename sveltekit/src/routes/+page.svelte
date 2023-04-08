@@ -1,27 +1,16 @@
 <script lang="ts">
+  import Post from '$lib/components/Post.svelte';
   import type { PageData } from "./$types";
   export let data: PageData;
+
+
 </script>
 
 <div class="container">
   <h1>Posts Feed</h1>
   <main class="container">
     {#each data.posts as post}
-      <article class="card">
-        <h2>{post.title}</h2>
-        <p>{post.content}</p>
-        <footer class="container grid">
-          <form method="post" action="?/delete">
-            <input type="text" name="id" value={post.id} />
-            <button type="submit">Delete</button>
-          </form>
-          <!-- <form method="post" action="?/update">
-            <input type="text" name="id" value={post.id} />
-            <input type="text" name="title" placeholder="new Title">
-            <button type="submit">Udate</button>
-          </form> -->
-        </footer>
-      </article>
+      <Post {post} />
     {/each}
     <section>
       <form method="post" action="?/post">

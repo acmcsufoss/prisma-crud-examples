@@ -1,6 +1,6 @@
 import db from "$lib/server/db";
 import { fail, redirect } from "@sveltejs/kit";
-import type { PageServerLoad } from "./$types";
+import type { Action, PageServerLoad } from "./$types";
 
 export const load = (async () => {
   await db.$connect();
@@ -24,7 +24,7 @@ export const actions = {
     await db.posts.create({
       data: {
         title: data.get("title") as string,
-        content: data.get("content") as string
+        content: data.get("content") as string,
       },
     });
     throw redirect(303, "/");
@@ -34,8 +34,8 @@ export const actions = {
     const id = Number(data.get("id"));
     await db.posts.delete({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
   },
-};
+}
