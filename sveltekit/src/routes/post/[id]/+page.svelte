@@ -18,7 +18,7 @@
     <button type="submit">Udate</button>
   </div>
 </form>
-<form class="grid" action="?/delete">
+<form method="post" class="grid" action="?/delete">
   <input name="id" type="text" value={id} readonly />
   <button type="submit">Delete</button>
 </form>

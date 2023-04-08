@@ -25,7 +25,7 @@ export const actions = {
     }
     try {
        await db.posts.update({
-      where: { id: 6 },
+      where: { id: Number(id) },
       data: {
         title: title,
         content: content,
@@ -39,9 +39,9 @@ export const actions = {
 
     throw redirect(303, `/`);
   },
-  delete: async ({ params: { id } }: { params: { id: string } }) => {
+  delete: async ({ params }) => {
     await db.posts.delete({
-      where: { id: Number(id) },
+      where: { id: Number(params.id) },
     });
 
     throw redirect(303, "/");
