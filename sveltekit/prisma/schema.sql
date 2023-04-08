@@ -1,0 +1,17 @@
+USE DATABASE db;
+
+CREATE TABLE posts(
+    id INT(9) NOT NULL,
+    title VARCHAR(64) DEFAULT NULL,
+    content VARCHAR(255) DEFAULT NULL,
+    PRIMARY KEY(id)
+)
+
+CREATE TABLE comments(
+    id INT(9) NOT NULL,
+    post_id INT(9) NOT NULL,
+    author VARCHAR(128) DEFAULT NULL,
+    comment VARCHAR(255) DEFAULT NULL,
+    PRIMARY KEY(post_id, id),
+    CONSTRAINT FOREIGN KEY(post_id) REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE
+)
